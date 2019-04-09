@@ -50,4 +50,10 @@ public class StudentServiceTest {
 		Student newStudent = studentService.findStudentById(id);
 		Assert.assertNotNull(newStudent);
 	}
+	
+	
+	@Test
+	public void testL1Cache() {
+		studentService.testL1Cache();
+	}
 }

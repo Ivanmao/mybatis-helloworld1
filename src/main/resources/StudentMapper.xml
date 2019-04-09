@@ -18,4 +18,8 @@
 		STUDENTS(STUD_ID,NAME,EMAIL,DOB) VALUES(#{studId
 		},#{name},#{email},#{dob})
 	</insert>
+	
+	<delete id="deleteById">
+		delete from STUDENTS where stud_id=#{id}
+	</delete>
 </mapper>

@@ -3,6 +3,7 @@ package com.guoh.mybatis.helloworld1;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Assert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,4 +46,46 @@ public class StudentService {
 			sqlSession.close();
 		}
 	}
+	
+	
+	
+	public void testL1Cache() {
+
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+
+		Student student1 = null;
+
+		try {
+			StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+			student1 = studentMapper.findStudentById(1);
+			student1.setName("doudou");
+
+			Student student2 = studentMapper.findStudentById(1);
+
+			Assert.assertEquals("doudou", student2.getName());
+
+			Assert.assertEquals(student1, student2); // 同一个实例
+
+		} finally {
+			sqlSession.close();
+		}
+
+		sqlSession = MyBatisSqlSessionFactory.openSession();
+
+		try {
+			StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+			Student student3 = studentMapper.findStudentById(1);
+
+			Assert.assertEquals(student1, student3); // 不同的实例
+
+			studentMapper.deleteById(2); // 删除id=2
+
+			Student student4 = studentMapper.findStudentById(1);
+			Assert.assertEquals(student3, student4);
+		} finally {
+			// 关闭sqlSession
+			sqlSession.close();
+		}
+	}
+	
 }
