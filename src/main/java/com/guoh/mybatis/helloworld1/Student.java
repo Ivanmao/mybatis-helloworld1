@@ -8,6 +8,8 @@ public class Student {
 	private String email;
 	private Date dob;
 	
+	private Enabled enabled;
+	
 	
 	public Integer getStudId() {
 		return studId;
@@ -33,4 +35,12 @@ public class Student {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	public Enabled getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(Enabled enabled) {
+		this.enabled = enabled;
+	}
+	
+	
 }

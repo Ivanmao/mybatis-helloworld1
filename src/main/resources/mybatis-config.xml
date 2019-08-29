@@ -4,6 +4,12 @@
 	<typeAliases>
 		<typeAlias alias="Student" type="com.guoh.mybatis.helloworld1.Student" />
 	</typeAliases>
+	
+	<typeHandlers>
+		<typeHandler javaType="com.guoh.mybatis.helloworld1.Enabled"
+			handler="com.guoh.mybatis.helloworld1.handler.EnabledTypeHandler"></typeHandler>
+	</typeHandlers>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
