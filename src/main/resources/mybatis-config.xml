@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+	<settings>
+		<setting name="cacheEnabled" value="true"></setting>
+	</settings>
+	
+	
 	<typeAliases>
 		<typeAlias alias="Student" type="com.guoh.mybatis.helloworld1.Student" />
 	</typeAliases>
@@ -23,5 +29,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="StudentMapper.xml" />
+		<mapper resource="UserMapper.xml" />
 	</mappers>
 </configuration>
