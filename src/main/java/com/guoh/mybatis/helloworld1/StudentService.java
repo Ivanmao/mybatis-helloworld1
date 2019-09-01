@@ -48,7 +48,9 @@ public class StudentService {
 	}
 	
 	
-	
+	/**
+	 * 一级缓存测试
+	 */
 	public void testL1Cache() {
 
 		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
@@ -62,9 +64,12 @@ public class StudentService {
 
 			Student student2 = studentMapper.findStudentById(1);
 
-			Assert.assertEquals("doudou", student2.getName());
-
-			Assert.assertEquals(student1, student2); // 同一个实例
+//			Assert.assertEquals("doudou", student2.getName());
+			
+			System.out.println("doudou".equals(student2.getName()));
+			
+//			Assert.assertEquals(student1, student2); // 同一个实例
+			System.out.println(student1.equals(student2));
 
 		} finally {
 			sqlSession.close();
@@ -76,12 +81,16 @@ public class StudentService {
 			StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
 			Student student3 = studentMapper.findStudentById(1);
 
-			Assert.assertEquals(student1, student3); // 不同的实例
+//			Assert.assertEquals(student1, student3); // 不同的实例
+			
+			System.out.println(student1.equals(student3));
 
 			studentMapper.deleteById(2); // 删除id=2
 
 			Student student4 = studentMapper.findStudentById(1);
-			Assert.assertEquals(student3, student4);
+//			Assert.assertEquals(student3, student4);
+			
+			System.out.println(student4.equals(student3));
 		} finally {
 			// 关闭sqlSession
 			sqlSession.close();
