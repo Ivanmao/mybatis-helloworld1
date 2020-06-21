@@ -21,4 +21,9 @@ public class UserServiceTest {
 	public void testL2Cache() {
 		userService.testL2Cache();
 	}
+	
+	@Test
+	public void testInsertUser() {
+		userService.insertUser();
+	}
 }

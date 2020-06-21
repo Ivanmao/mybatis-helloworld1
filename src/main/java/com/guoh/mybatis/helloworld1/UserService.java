@@ -51,5 +51,29 @@ public class UserService {
 			sqlSession.close();
 		}
 	}
+	
+	public long insertUser() {
+		SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();
+		try {
+			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+			User user = new User();
+			user.setAge(18);
+			user.setName("ribery");
+
+			int result = userMapper.insertUser(user);
+			logger.info("---result:{}", result);
+			
+			logger.info("---user.id={}",user.getId());
+			
+			sqlSession.commit();
+
+			return user.getId();
+
+		} finally {
+			sqlSession.close();
+		}
+	}
+	
 
 }

@@ -31,4 +31,11 @@
 		from t_user
 		where id = #{id,jdbcType=BIGINT}
 	</select>
+	
+	<!-- 使用jdbc方式返回主键自增的值 -->
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id" parameterType="com.guoh.mybatis.helloworld1.User">
+		insert into t_user (age, name)
+    	values (#{age,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+	</insert>
 </mapper>
+
